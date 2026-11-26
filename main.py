@@ -23,10 +23,14 @@ LINE = (
 
 OUTPUT_PATH = "/output/entry.txt"
 
+# The bounty caps the line at 140 characters; keep the cap in one named
+# place so the validation below and the docstring above cannot drift apart.
+MAX_CHARS = 140
+
 
 def write_entry() -> str:
     """Write the one-liner to the output file and return what was written."""
-    if not 1 <= len(LINE) <= 140:
+    if not 1 <= len(LINE) <= MAX_CHARS:
         raise SystemExit("line must be 1 to 140 characters")
     if "\n" in LINE or "\r" in LINE:
         raise SystemExit("line must be a single line")
